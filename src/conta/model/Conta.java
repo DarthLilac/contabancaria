@@ -1,7 +1,7 @@
 package conta.model;
 
-public class Conta {
-	 
+public abstract class Conta {
+
 	// atributos / características
 	// encapsulamento: proteger os dados
 	// private / protected / public / friendly
@@ -9,21 +9,31 @@ public class Conta {
 	private int numero, agencia, tipo;
 	private String titular;
 	private float saldo;
-	
+
 	// Método Construtor > auxilia na criação de um objeto da classe
-	public Conta( int numero, int agencia, int tipo, String titular, float saldo) {
-		
+	public Conta(int numeroConta, int agencia, int tipo, String titular, float saldo) {
+
 		// this: representa o nome da própria classe (Conta)
+		numero = numeroConta;
 		this.agencia = agencia; // conta.numero recebe o valor do arg. numero
 		this.tipo = tipo;
 		this.titular = titular;
 		this.saldo = saldo;
 	}
+	public Conta(int agencia, int tipo, String titular, float saldo) {
+
+		this.numero = +1;
+		this.agencia = agencia; 
+		this.tipo = tipo;
+		this.titular = titular;
+		this.saldo = saldo;
+	}
 	
+
 	public int getNumero() {
 		return numero;
 	}
-	
+
 	public void setNumero(int numeroConta) {
 		this.numero = numeroConta;
 	}
@@ -60,16 +70,15 @@ public class Conta {
 		this.saldo = saldo;
 	}
 
-	
 	// métodos / ações
-	
-public boolean sacar(float valor) { 
-		
-		if(this.getSaldo() < valor) {
+
+	public boolean sacar(float valor) {
+
+		if (this.getSaldo() < valor) {
 			System.out.println("\n Saldo Insuficiente!");
 			return false;
 		}
-			
+
 		this.setSaldo(this.getSaldo() - valor);
 		return true;
 	}
@@ -79,20 +88,20 @@ public boolean sacar(float valor) {
 		this.setSaldo(this.getSaldo() + valor);
 
 	}
-	
+
 	public void visualizar() {
 
 		String tipo = "";
-		
-		switch(this.tipo) {
+
+		switch (this.tipo) {
 		case 1:
 			tipo = "Conta Corrente";
-		break;
+			break;
 		case 2:
 			tipo = "Conta Poupança";
-		break;
+			break;
 		}
-		
+
 		System.out.println("\n\n***********************************************************");
 		System.out.println("Dados da Conta:");
 		System.out.println("***********************************************************");
@@ -103,6 +112,5 @@ public boolean sacar(float valor) {
 		System.out.println("Saldo: " + this.saldo);
 
 	}
-  
-	
+
 }
